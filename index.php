@@ -13,7 +13,7 @@
 
 
 <?php startblock('body') ?>
-This is a test for the main page. Github will work... I think...
+superswek
 
 <?php endblock() ?>
 

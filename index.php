@@ -13,7 +13,7 @@
 
 
 <?php startblock('body') ?>
-superswek
+superduperswek
 
 <?php endblock() ?>
 

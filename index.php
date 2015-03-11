@@ -10,6 +10,7 @@
 
 <?php startblock('body') ?>
     <?php
+
         $results = Database::getKlanten();
 
         foreach($results as $row)

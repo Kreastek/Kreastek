@@ -1,19 +1,22 @@
-<?php include 'base.php'
-/**
- * Created by PhpStorm.
- * User: Aaron
- * Date: 8-12-2014
- * Time: 13:11
- */
+<?php
+    include 'base.php';
+    include 'Database.php';
 ?>
 
 <?php startblock('featured-title') ?>
-<h1>Kreastek</h1>
+    <h1>Kreastek</h1>
 <?php endblock() ?>
 
 
 <?php startblock('body') ?>
-superduperswek
+    <?php
+        $results = Database::getKlanten();
 
+        foreach($results as $row)
+        {
+            echo $row['ID'] . " " . $row['Naam'] . "<br/>";
+        }
+
+    ?>
 <?php endblock() ?>
 

@@ -10,13 +10,12 @@
 
 <?php startblock('body') ?>
     <?php
+    $results = Database::getKlanten();
 
-        $results = Database::getKlanten();
-
-        foreach($results as $row)
-        {
-            echo $row['ID'] . " " . $row['Naam'] . "<br/>";
-        }
+    foreach($results as $row)
+    {
+        echo $row['Klant_ID'] . " " . $row['Naam'] . "<br/>";
+    }
 
     ?>
 <?php endblock() ?>

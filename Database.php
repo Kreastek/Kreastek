@@ -45,6 +45,11 @@ class Database
 
         return null;
     }
+
+    public static function setKlant()
+    {
+
+    }
 }
 
 ?>

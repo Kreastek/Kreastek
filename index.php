@@ -14,7 +14,7 @@
 
     foreach($results as $row)
     {
-        echo $row['Klant_ID'] . " " . $row['Naam'] . "<br/>";
+        echo $row['Klant_ID'] . " " . $row['Achternaam'] . "<br/>";
     }
 
     ?>

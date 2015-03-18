@@ -4,6 +4,16 @@
     float:left;
 }
 
+body {
+    background-color: #EEE;
+}
+
+footer {
+    height: 30px;
+    width: 100%;
+    background-color: red;
+}
+
 .productOverzichtContainer {
     width: 100%;
     height: 100%;

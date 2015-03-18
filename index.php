@@ -3,18 +3,15 @@
     include 'Database.php';
 ?>
 
-<?php startblock('featured-title') ?>
-    <h1>Kreastek</h1>
-<?php endblock() ?>
 
 
 <?php startblock('body') ?>
     <?php
-    $results = Database::getKlanten();
+    $results = Database::getProducten();
 
     foreach($results as $row)
     {
-        echo $row['Klant_ID'] . " " . $row['Naam'] . "<br/>";
+        echo $row['Product_ID'] . "<br/>" . $row['Titel'] . "<br/>" . $row['Omschrijving'] . "<br/><br/>";
     }
 
     ?>

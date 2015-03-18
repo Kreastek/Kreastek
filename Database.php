@@ -5,6 +5,7 @@ class Database
 {
     private static function connect()
     {
+        echo gethostname();
         //Try to connect to local DB
         //$conn = sqlsrv_connect(Credentials::$HostLocal);
 
@@ -19,7 +20,7 @@ class Database
         return $conn;
     }
 
-    public static function getKlanten()
+    public static function getProducten()
     {
         //open conenction
         $connection = self::connect();
@@ -27,7 +28,7 @@ class Database
         if($connection != null)
         {
             //run query
-            $query = sqlsrv_query($connection, "SELECT * FROM dbo.klanten");
+            $query = sqlsrv_query($connection, "SELECT * FROM dbo.Producten");
 
             $results = array();
             $index = 0;
@@ -44,11 +45,6 @@ class Database
         }
 
         return null;
-    }
-
-    public static function setKlant()
-    {
-
     }
 }
 

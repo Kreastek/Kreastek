@@ -20,7 +20,6 @@
     <?php startblock('css') ?>
     <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css"/>
     <link rel="stylesheet" type="text/css" href="css/bootstrap-theme.min.css"/>
-    <link rel="stylesheet" type="text/css" href="custom.css"/>
     <?php endblock() ?>
     <?php startblock('scripts') ?>
     <link rel="script" href="js/bootstrap.min.js"/>
@@ -61,15 +60,6 @@
         <div class="navbar-collapse collapse">
         </div>
         <!--/.navbar-collapse -->
-    </div>
-</div>
-
-<!-- Main jumbotron for a primary marketing message or call to action -->
-<div class="jumbotron">
-    <div class="container center">
-        <?php startblock('featured-title') ?>
-        <h1>Hello, world!</h1>
-        <?php endblock() ?>
     </div>
 </div>
 

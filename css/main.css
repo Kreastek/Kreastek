@@ -6,6 +6,7 @@
 
 body {
     background-color: #EEE;
+    margin: 0 0 100px; /* bottom = footer height */
 }
 
 footer {
@@ -58,6 +59,20 @@ footer {
     width: 100%;
     text-overflow: ellipsis;
     overflow: hidden;
+}
+
+html {
+    position: relative;
+    min-height: 100%;
+}
+
+footer {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    height: 100px;
+    width: 100%;
+    text-align: center;
 }
 
 .productDetailTitle {

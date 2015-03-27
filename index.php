@@ -4,17 +4,28 @@
 ?>
 
 
-
 <?php startblock('body') ?>
     <?php
     $results = Database::getProducten();
 
     foreach($results as $row)
-    {
-        echo $row['Klant_ID'] . " " . $row['Achternaam'] . "<br/>";
-        echo $row['Product_ID'] . "<br/>" . $row['Titel'] . "<br/>" . $row['Omschrijving'] . "<br/><br/>";
-    }
-
-    ?>
+    { ?>
+        <div class='productOverzichtPositioner'>
+            <div class='productOverzichtContainer'>
+            <div class='productOverzichtImg' style='background-image: url(<?php echo $row['Afbeelding'] ?>)'></div>
+                <div class='productOverzichtTitle'>
+                    <p><?php echo $row['Titel'] ?></p>
+                </div>
+                <div class='productOverzichtPrijs'>
+                    <p>&euro; <?php echo $row['Prijs'] ?></p>
+                </div>
+                <div class='productOverzichtBeschrijving'>
+                    <div style='clear:both'></div>
+                    <p><?php echo $row['Omschrijving'] ?></p>
+                </div>
+                <div style='clear:both'></div>
+            </div>
+        </div>
+    <?php } ?>
 <?php endblock() ?>
 

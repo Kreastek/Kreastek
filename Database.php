@@ -5,7 +5,7 @@ class Database
 {
     private static function connect()
     {
-        echo gethostname();
+        //echo gethostname();
         //Try to connect to local DB
         //$conn = sqlsrv_connect(Credentials::$HostLocal);
 

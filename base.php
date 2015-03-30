@@ -8,14 +8,6 @@
 <!--[if gt IE 8]><!-->
 <html class="no-js"> <!--<![endif]-->
 <head>
-    <?php
-    /**
-     * Created by PhpStorm.
-     * User: Aaron
-     * Date: 8-12-2014
-     * Time: 13:57
-     */
-    ?>
     <?php require_once 'ti.php' ?>
     <?php startblock('css') ?>
     <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css"/>
@@ -23,10 +15,10 @@
     <link rel="stylesheet" type="text/css" href="css/main.css">
     <?php endblock() ?>
     <?php startblock('scripts') ?>
-    <link rel="script" href="js/bootstrap.min.js"/>
-    <link rel="script" href="js/jquery-1.11.1.min.js"/>
-    <link rel="script" href="js/modernizr-2.6.2-respond-1.1.0.min.js"/>
-    <link rel="script" href="js/main.js"/>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/jquery-1.11.1.min.js"></script>
+    <script src="js/modernizr-2.6.2-respond-1.1.0.min.js"></script>
+    <script src="js/main.js"></script>
     <?php endblock() ?>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
@@ -98,31 +90,5 @@
         <p>&copy; Company 2014</p>
     </footer>
 </div>
-<!-- /container -->
-<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-<script>window.jQuery || document.write('<script src="js/vendor/jquery-1.11.1.min.js"><\/script>')</script>
-
-
-<!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
-<script>
-    (function (b, o, i, l, e, r) {
-        b.GoogleAnalyticsObject = l;
-        b[l] || (b[l] =
-            function () {
-                (b[l].q = b[l].q || []).push(arguments)
-            });
-        b[l].l = +new Date;
-        e = o.createElement(i);
-        r = o.getElementsByTagName(i)[0];
-        e.src = '//www.google-analytics.com/analytics.js';
-        r.parentNode.insertBefore(e, r)
-    }(window, document, 'script', 'ga'));
-    ga('create', 'UA-XXXXX-X');
-    ga('send', 'pageview');
-</script>
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.5/jquery.min.js" type="text/javascript"></script>
-<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js" type="text/javascript"></script>
-<link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css" rel="stylesheet"
-      type="text/css"/>
 </body>
 </html>

@@ -1,5 +1,7 @@
 <html>
     <body>
-        <div></div>
+        <div>
+            <?php echo $_POST['titel'] ?>
+        </div>
     </body>
 </html>

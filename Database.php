@@ -79,9 +79,10 @@ class Database
 
             if($connection != null)
             {
-                $query = sqlsrv_query($connection, "SELECT * FROM dbo.Accounts WHERE Gebruikersnaam = 'Aaron' AND Wachtwoord = '123456'");
+                $query = sqlsrv_query($connection, "SELECT * FROM dbo.Accounts WHERE Gebruikersnaam = '" . $username . "' AND Wachtwoord = '" . $password . "'");
+                $results = sqlsrv_fetch_array($query);
 
-                echo sqlsrv_num_rows($query);
+
             }
         }
     }

@@ -46,6 +46,29 @@ class Database
 
         return null;
     }
+
+    public static function getProduct($id)
+    {
+        $connection = self::connect();
+
+        if($connection != null)
+        {
+            $query = sqlsrv_query($connection, "SELECT TOP 1 * FROM dbo.Producten WHERE Product_ID = 1");
+
+            $results = array();
+            $index = 0;
+
+            while($row = sqlsrv_fetch_array($query))
+            {
+                $results[$index] = $row;
+                $index++;
+            }
+
+            return $results;
+
+        }
+
+    }
 }
 
 ?>

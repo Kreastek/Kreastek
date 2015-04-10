@@ -49,25 +49,41 @@ class Database
 
     public static function getProduct($id)
     {
-        $connection = self::connect();
-
-        if($connection != null)
+        if($id != null && $id != "")
         {
-            $query = sqlsrv_query($connection, "SELECT TOP 1 * FROM dbo.Producten WHERE Product_ID = 1");
+            $connection = self::connect();
 
-            $results = array();
-            $index = 0;
-
-            while($row = sqlsrv_fetch_array($query))
+            if($connection != null)
             {
-                $results[$index] = $row;
-                $index++;
+                $query = sqlsrv_query($connection, "SELECT TOP 1 * FROM dbo.Producten WHERE Product_ID = 1");
+
+                $results = array();
+                $index = 0;
+
+                while($row = sqlsrv_fetch_array($query))
+                {
+                    $results[$index] = $row;
+                    $index++;
+                }
+
+                return $results;
             }
-
-            return $results;
-
         }
+    }
 
+    public static function login($username, $password)
+    {
+        if($username != null && $username != "" && $password != null && $password != "")
+        {
+            $connection = self::connect();
+
+            if($connection != null)
+            {
+                $query = sqlsrv_query($connection, "SELECT * FROM dbo.Accounts WHERE Gebruikersnaam = 'Aaron' AND Wachtwoord = '123456'");
+
+                echo sqlsrv_num_rows($query);
+            }
+        }
     }
 }
 

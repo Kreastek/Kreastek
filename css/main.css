@@ -7,6 +7,8 @@
 body {
     background-color: #EEE;
     margin: 0 0 100px; /* bottom = footer height */
+    padding-top: 50px;
+    padding-bottom: 20px;
 }
 
 footer {

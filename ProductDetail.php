@@ -9,7 +9,6 @@ include 'Database.php';
     {
         $results = Database::getProduct(($_GET['id']));
         $product = $results[0];
-        $zooi = Database::login("Aaron", "123456");
 ?>
         <?php echo $product['Titel'] ?></br>
         <?php echo $product['Omschrijving'] ?></br>

@@ -40,7 +40,7 @@ footer {
 }
 
 .productOverzichtTitle {
-    width: 80%;
+    width: 60%;
     float: left;
     font-size: 25px;
     text-decoration: underline;
@@ -48,7 +48,7 @@ footer {
 }
 
 .productOverzichtPrijs {
-    width: 20%;
+    width: 40%;
     float: left;
     font-size: 25px;
     margin-top: 5px;
@@ -86,7 +86,9 @@ footer {
 
 .productDetailPrijs {
 
-}.navbar-collapse{padding-top:3px;padding-bottom:3px !important}
+}
+
+.navbar-collapse{padding-top:3px;padding-bottom:3px !important}
 .dropdown-menu{width: 300px;border-top:0px;margin-top:3px;}
 .dropdown-menu .col-sm-12{margin-bottom:7px;}
 .dropdown-menu:after{

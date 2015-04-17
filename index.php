@@ -1,13 +1,11 @@
 <?php
     include 'base.php';
-    include 'Database.php';
 ?>
 
 
 <?php startblock('body') ?>
     <?php
     $results = Database::getProducten();
-
     foreach($results as $row)
     { ?>
         <div class='productOverzichtPositioner'>

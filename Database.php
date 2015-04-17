@@ -47,6 +47,31 @@ class Database
         return null;
     }
 
+    public static function getCategorieen()
+    {
+        //open conenction
+        $connection = self::connect();
+
+        if ($connection != null) {
+            //run query
+            $query = sqlsrv_query($connection, "SELECT * FROM dbo.Categorieen");
+
+            $results = array();
+            $index = 0;
+
+            //put results into array
+            while ($row = sqlsrv_fetch_array($query)) {
+                $results[$index] = $row;
+                $index++;
+            }
+
+            //return array
+            return $results;
+        }
+
+        return null;
+    }
+
     public static function getProduct($id)
     {
         if($id != null && $id != "")

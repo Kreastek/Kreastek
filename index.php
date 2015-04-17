@@ -6,7 +6,6 @@
 <?php startblock('body') ?>
     <?php
     $results = Database::getProducten();
-
     if($results != null)
     {
         foreach ($results as $row)

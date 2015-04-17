@@ -6,6 +6,7 @@
 <head>
     <?php require_once 'ti.php';
     include 'Database.php';
+    session_start();
     startblock('css') ?>
     <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css"/>
     <link rel="stylesheet" type="text/css" href="css/bootstrap-theme.min.css"/>
@@ -32,42 +33,61 @@
 <![endif]-->
 <div class="navbar navbar-default navbar-fixed-top">
     <div class="navbar-inner"
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbarmain">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="/">Kreastek</a>
-        </div>
-        <div class="collapse navbar-collapse" id="navbarmain">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbarmain">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="index.php">Kreastek</a>
+    </div>
+    <div class="collapse navbar-collapse" id="navbarmain">
+        <ul class="nav navbar-nav">
+            <li><a href="index.php">Home</a></li>
+            <li>
+                <a href="TestStuff.php">Producten</a></li>
+            <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                    Categoriën
+                    <span class="caret"></span></a>
+                <ul class="dropdown-menu" role="menu">
+                    <?php $results = Database::getCategorieen();
+                    foreach ($results as $row) {
+                        ?>
+                        <li><a><?php echo $row['Naam'] ?></a></li>
+                    <?php } ?>
+                </ul>
+            </li>
+        </ul>
+        <div class="navbar-right">
             <ul class="nav navbar-nav">
-                <li><a href="index.php">Home</a></li>
-                <li>
-                    <a href="TestStuff.php">Producten</a></li>
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                        Categoriën
-                        <span class="caret"></span></a>
+                        <?php
+                        if (isset($_SESSION['username']))
+                        {
+                            echo $_SESSION['username'] . '<span class="caret"></span>';
+                            ?>
                     <ul class="dropdown-menu" role="menu">
-
-                        <li><a>Home</a></li>
-                        <li><a>Something</a></li>
-                        <li><a>More</a></li>
-                        <li class="divider"></li>
-                        <li><a>Even more</a></li>
-                        <li><a>Wow more</a></li>
+                        <li>
+                            <form action="validate-login.php" method="post">
+                                <div class="col-sm-12">
+                                    <div class="col-sm-12">
+                                        <button type="submit" class="btn btn-success btn-sm">Log out</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </li>
                     </ul>
-                </li>
-            </ul>
-                <div class="navbar-right">
-                    <ul class="nav navbar-nav"><li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                            Login <span class="caret"></span>
-                        </a>
-                        <ul class="dropdown-menu" role="menu">
-                            <li>
+                        <?php
+                        }
+                        else{
+                        ?>
+                        Login <span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu" role="menu">
+                        <li>
                             <form action="validate-login.php" method="post">
                                 <div class="col-sm-12">
                                     <div class="col-sm-12">
@@ -81,21 +101,22 @@
                                         <input type="password" placeholder="Wachtwoord" class="form-control input-sm" name="password" id="password" />
                                     </div>
                                     <div class="col-sm-12">
-                                        <button formaction="validate-login.php" type="submit" class="btn btn-success btn-sm">Sign in</button>
+                                        <button type="submit" class="btn btn-success btn-sm">Sign in</button>
                                     </div>
                                 </div>
                             </form>
-                            </li>
-                        </ul>
+                        </li>
                     </ul>
-                </div>
+                    <?php } ?>
+            </ul>
         </div>
     </div>
+</div>
 <div class="container">
     <?php startblock('body') ?>
-        This is the body, if you opened the block body you would not see this message.
-        <br />
-        Please fix it.
+    This is the body, if you opened the block body you would not see this message.
+    <br/>
+    Please fix it.
     <?php endblock() ?>
     <footer>
         <p>&copy; Kreastek <?php echo date("Y") ?></p>
@@ -109,13 +130,13 @@
             event.stopPropagation();
         });
 
-    var url = window.location;
-    // Will only work if string in href matches with location
-    $('ul.nav a[href="' + url + '"]').parent().addClass('active');
-    // Will also work for relative and absolute hrefs
-    $('ul.nav a').filter(function () {
-        return this.href == url;
-    }).parent().addClass('active')
-        .parent().parent().addClass('active');
+        var url = window.location;
+        // Will only work if string in href matches with location
+        $('ul.nav a[href="' + url + '"]').parent().addClass('active');
+        // Will also work for relative and absolute hrefs
+        $('ul.nav a').filter(function () {
+            return this.href == url;
+        }).parent().addClass('active')
+            .parent().parent().addClass('active');
     });
 </script>

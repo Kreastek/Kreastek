@@ -1,17 +1,11 @@
 <?php
     include 'base.php';
-    include 'Database.php';
 ?>
 
 
 <?php startblock('body') ?>
     <?php
     $results = Database::getProducten();
-    if(Database::login("Aaron", 123456))
-    {
-
-    }
-
     foreach($results as $row)
     { ?>
         <div class='productOverzichtPositioner'>

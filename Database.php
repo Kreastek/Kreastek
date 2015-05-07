@@ -6,17 +6,8 @@ class Database
     private static function connect()
     {
         //echo gethostname();
-        //Try to connect to local DB
-        //$conn = sqlsrv_connect(Credentials::$HostLocal);
-
-        //if($conn == null)
-        //{
-            //Connection to local DB did not succeed, try connect to the remote ip (for when you are debugging).
-            $conn = sqlsrv_connect(Credentials::$HostRemote, Credentials::$ConnInfoRemote);
-
-            return $conn;
-        //}
-
+        //Try to connect to local DB on Mike's pc
+        $conn = sqlsrv_connect(Credentials::$HostMike);
         return $conn;
     }
 

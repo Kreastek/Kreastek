@@ -10,7 +10,7 @@
     startblock('css') ?>
     <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css"/>
     <link rel="stylesheet" type="text/css" href="css/bootstrap-theme.min.css"/>
-    <link rel="stylesheet" type="text/css" href="css/main.css">
+    <link rel="stylesheet" type="text/css" href="css/style.php">
     <link href="css/star-rating.min.css" media="all" rel="stylesheet" type="text/css"/>
     <?php endblock() ?>
     <?php startblock('scripts') ?>
@@ -33,92 +33,96 @@
 <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade
     your browser</a> to improve your experience.</p>
 <![endif]-->
+
 <div class="navbar navbar-default navbar-fixed-top">
-    <div class="navbar-inner"
-    <div class="navbar-header">
-        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbarmain">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-        </button>
-        <a class="navbar-brand" href="index.php">Kreastek</a>
-    </div>
-    <!--Menu items-->
-    <div class="collapse navbar-collapse" id="navbarmain">
-        <ul class="nav navbar-nav">
-            <li><a href="index.php">Home</a></li>
-            <li><a href="TestStuff.php">Producten</a></li>
-            <!--Categorieen dropdown-->
-            <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Categoriën<span class="caret"></span></a>
-                <ul class="dropdown-menu" role="menu">
-                    <?php $results = Database::getCategorieen();
-                    foreach ($results as $row) {
-                        ?>
-                        <li><?php echo '<a href="Categorie.php?id=' .$row["Categorie_ID"]. '">'  .$row['Naam'] ?></a></li>
-                    <?php } ?>
-                </ul>
-            </li>
-        </ul>
-        <div class="navbar-right">
-            <ul class="nav navbar-nav">
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                        <?php
-                        if (isset($_SESSION['username']))
-                        {
-                            echo $_SESSION['username'] . '<span class="caret"></span>';
-                        }
-                        else
-                        { ?>
-                            Login <span class="caret"/>
-                        <?php } ?>
-                    </a>
-                    <ul class="dropdown-menu" role="menu">
-                        <?php
-                        if(isset($_SESSION['username']))
-                        { ?>
-							<!--Geef uilog knop-->
-							<li>
-								<form action="logout.php" method="post">
-									<div class="col-sm-12">
-										<div class="col-sm-12">
-											<button type="submit" class="btn btn-success btn-sm">Log out</button>
-										</div>
-									</div>
-								</form>
-							</li>
-                        <?php }
-                        else
-                        { ?>
-							<!--Geef inlogvelden-->
-							<li>
-								<form action="validate-login.php" method="post">
-									<div class="col-sm-12">
-										<div class="col-sm-12">
-											Login
-										</div>
-										<div class="col-sm-12">
-											<input type="text" placeholder="Gebruikersnaam" class="form-control input-sm" id="username" name="username"/>
-										</div>
-										<br/>
-										<div class="col-sm-12">
-											<input type="password" placeholder="Wachtwoord" class="form-control input-sm" name="password" id="password" />
-										</div>
-										<div class="col-sm-12">
-											<button type="submit" class="btn btn-success btn-sm">Sign in</button>
-										</div>
-									</div>
-								</form>
-							</li>
-                        <?php }
-                        ?>
+	<div id="menubalk">
+		<div class="navbar-inner">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbarmain">
+					<span class="sr-only">Toggle navigation</span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand" href="index.php">Kreastek</a>
+			</div>
+		</div>
+		<!--Menu items-->
+		<div class="collapse navbar-collapse" id="navbarmain">
+			<ul class="nav navbar-nav">
+				<li><a href="index.php">Home</a></li>
+				<li><a href="TestStuff.php">Producten</a></li>
+				<!--Categorieen dropdown-->
+				<li class="dropdown">
+					<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Categoriën<span class="caret"></span></a>
+					<ul class="dropdown-menu" role="menu">
+						<?php $results = Database::getCategorieen();
+						foreach ($results as $row) {
+							?>
+							<li><?php echo '<a href="Categorie.php?id=' .$row["Categorie_ID"]. '">'  .$row['Naam'] ?></a></li>
+						<?php } ?>
 					</ul>
 				</li>
-            </ul>
-        </div>
-    </div>
+			</ul>
+			<div class="navbar-right">
+				<ul class="nav navbar-nav">
+					<li class="dropdown">
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+							<?php
+							if (isset($_SESSION['username']))
+							{
+								echo $_SESSION['username'] . '<span class="caret"></span>';
+							}
+							else
+							{ ?>
+								Login <span class="caret"/>
+							<?php } ?>
+						</a>
+						<ul class="dropdown-menu" role="menu">
+							<?php
+							if(isset($_SESSION['username']))
+							{ ?>
+								<!--Geef uilog knop-->
+								<li>
+									<form action="logout.php" method="post">
+										<div class="col-sm-12">
+											<div class="col-sm-12">
+												<button type="submit" class="btn btn-success btn-sm">Log out</button>
+											</div>
+										</div>
+									</form>
+								</li>
+							<?php }
+							else
+							{ ?>
+								<!--Geef inlogvelden-->
+								<li>
+									<form action="validate-login.php" method="post">
+										<div class="col-sm-12">
+											<div class="col-sm-12">
+												Login
+											</div>
+											<div class="col-sm-12">
+												<input type="text" placeholder="Gebruikersnaam" class="form-control input-sm" id="username" name="username"/>
+											</div>
+											<br/>
+											<div class="col-sm-12">
+												<input type="password" placeholder="Wachtwoord" class="form-control input-sm" name="password" id="password" />
+											</div>
+											<div class="col-sm-12">
+												<button type="submit" class="btn btn-success btn-sm">Sign in</button>
+											</div>
+										</div>
+									</form>
+								</li>
+							<?php }
+							?>
+						</ul>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
 </div>
 <div class="container">
     <?php startblock('body') ?>

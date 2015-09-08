@@ -4,6 +4,7 @@ include 'base.php';
 <?php startblock('body') ?>
 
 <?php
+	//Kijken of er een product gezet is
     if(isset($_GET['id']) && trim($_GET['id']) != "")
     {
         $results = Database::getProduct(($_GET['id']));
@@ -19,7 +20,10 @@ include 'base.php';
             <div class="detailFotoPrijs"><p>&euro;<?php echo $product['Prijs']?>,-</p></div>
             <p class="detailToelichtingText">Betalingen worden afgehandeld via iDeal of PayPal.</p>
             <p class="detailToelichtingText">Wanneer de betaling binnen is wordt het product verzonden.</p>
-            <a href="Winkelmandje.php?id=<?php echo $product['Product_ID']?>&quantity=2"><button class="btn btn-success detailButton">In winkelmandje</button></a>
+			<!--Product in winkelmandje-->
+            <a href="Winkelmandje.php?id=<?php echo $product['Product_ID']?>&quantity=1">
+				<button class="btn btn-success detailButton">In winkelmandje</button>
+			</a>
         </div>
 
 
@@ -68,6 +72,10 @@ include 'base.php';
 
         </div>
 
-    <?php } ?>
-
+    <?php
+	}
+	else
+	{
+		echo "<p>Er is geen product geselecteerd.</p>";
+	}?>
 <?php endblock() ?>

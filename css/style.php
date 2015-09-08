@@ -1,3 +1,8 @@
+<?php
+	header("Content-type: text/css; charset: UTF-8");
+
+	$pageWidth = "1170px";
+?>
 
 body {
     background-color: #EEE;
@@ -8,6 +13,7 @@ body {
 
 .container {
     margin-top: 56px;
+	width: <?php echo $pageWidth;?> !important;
 }
 
 .productOverzichtPositioner {
@@ -132,10 +138,39 @@ footer {
     text-align: center;
 }
 
-.navbar-collapse{padding-top:3px;padding-bottom:3px !important}
-.dropdown-menu{width: 300px;border-top:0px;margin-top:3px;}
-.dropdown-menu .col-sm-12{margin-bottom:7px;}
-.dropdown-menu:after{
+#menubalk {
+	background-color: red !important;
+	margin: auto;
+	height: 100%;
+	width: <?php echo $pageWidth;?> !important;
+}
+
+.navbar {
+	background-color: blue !important;
+	background-image:none !important;
+}
+
+.navbar-collapse
+{
+	padding-top: 3px;
+	padding-bottom: 3px !important
+}
+
+.dropdown-menu
+{
+	width: 300px;
+	border-top: 0px;
+	margin-top: 3px;
+}
+
+.dropdown-menu
+.col-sm-12
+{
+	margin-bottom: 7px;
+}
+
+.dropdown-menu:after
+{
     content: '';
     display: inline-block;
     border-left: 6px solid transparent;

@@ -16,7 +16,7 @@ include 'base.php';
             $_SESSION['producten'] = array();
         }
 
-        //ALs product al voorkomt quantity optellen, anders nieuwe regel in array maken.
+        //Als product al voorkomt quantity optellen, anders nieuwe regel in array maken.
         if(array_key_exists($_GET['id'], $_SESSION['producten']))
         {
             $_SESSION['producten'][$_GET['id']] += $_GET['quantity'];
@@ -28,7 +28,24 @@ include 'base.php';
     }
 
     if(isset($_SESSION['producten']))
-    { ?>
+    {
+		$productDetails = array();
+
+		echo "<table>";
+
+		foreach($_SESSION['producten'] as $key => $item)
+		{
+			$product = Database::getProduct($key);
+
+			if($product != null)
+			{
+
+			}
+		}
+
+		echo "</table>";
+
+		?>
         <table>
             <?php foreach($_SESSION['producten'] as $key => $item)
             {
@@ -36,6 +53,11 @@ include 'base.php';
             } ?>
         </table>
     <?php
-    } ?>
+    }
+	else
+	{
+		echo "<p>Er bevinden zich geen producten in uw winkelmandje.</p>";
+	}
+?>
 
 <?php endblock() ?>

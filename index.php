@@ -36,4 +36,3 @@
         <p>Het verzoek naar de database heeft geen resultaten opgeleverd, of de verbinding met de database is offline.</p>
     <?php } ?>
 <?php endblock() ?>
-

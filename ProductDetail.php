@@ -18,15 +18,56 @@ include 'base.php';
         <div class="detailRightContainer">
             <div class="detailFotoPrijs"><p>&euro;<?php echo $product['Prijs']?>,-</p></div>
             <p class="detailToelichtingText">Betalingen worden afgehandeld via iDeal of PayPal.</p>
-            <p class="detailToelichtingText">Wanneer de betaling binnen is wordt de foto tussen uw foto's geplaatst</p>
+            <p class="detailToelichtingText">Wanneer de betaling binnen is wordt het product verzonden.</p>
             <a href="Winkelmandje.php?id=<?php echo $product['Product_ID']?>&quantity=2"><button class="btn btn-success detailButton">In winkelmandje</button></a>
         </div>
 
-        <div class="detailBeschrijvingContainer">
-            <p class = "detailBeschrijvingTitle">Beschrijving</p>
-            <hr  class="detailBeschrijvingUnderline"/>
-            <p>Talogus te maken. Het heeft niet alleen vijf eeuwen overleefd maar is ook, vrijwel onveranderd, overgenomen in elektronische letterzetting. Het is in de jaren '60 populair geworden met de introductie van Letraset vellen met Lorem Ipsum passages en meer recentelijk door desktop publishing software zoals Aldus PageMaker die versies van Lorem Ipsum bevatten.</p>
+
+        <hr>
+        <div class="section_wrapper">
+            <a id="Beschrijving" class="btn btn-default">Beschrijving</a>
+            <a id="Reviews"class="btn btn-default">Reviews</a>
+
+
+            <div id="beschrijving" class="hide">
+            <div class="detailBeschrijvingContainer">
+                <p class = "detailBeschrijvingTitle">Beschrijving</p>
+                <hr  class="detailBeschrijvingUnderline"/>
+                <p><?php echo $product['Omschrijving']?></p>
+            </div>
+            </div>
+
+            <div id="reviews" class="hide">
+                    <h3>Reviews</h3>
+                    <hr  class="detailBeschrijvingUnderline"/>
+                <form class="form-horizontal" action="ProductDetail.php" method="post">
+                    <div class="form-group">
+                        <label for="sm_star" class="col-sm-2 control-label">Aantal sterren:</label>
+                        <div class="col-sm-10">
+                            <input id="sm_star" name="sm_star" type="number" class="rating" min=0 max=5 step=0.5 data-size="sm">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="titelReview" class="col-sm-2 control-label">Titel:</label>
+                        <div class="col-sm-10">
+                            <input id="titelReview" placeholder="titel" class="form-control">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-offset-2 col-sm-10">
+                            <textarea id="recensie" rows="5" placeholder="Uw recensie" class="form-control"></textarea>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-offset-2 col-sm-10">
+                            <button type="submit" class="btn btn-default">Recensie plaatsen</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
         </div>
+
     <?php } ?>
 
 <?php endblock() ?>

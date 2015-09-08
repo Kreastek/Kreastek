@@ -71,7 +71,55 @@ class Database
 
             if($connection != null)
             {
-                $query = sqlsrv_query($connection, "SELECT TOP 1 * FROM dbo.Producten WHERE Product_ID = 1");
+                $query = sqlsrv_query($connection, "SELECT TOP 1 * FROM dbo.Producten WHERE Product_ID = $id");
+
+                $results = array();
+                $index = 0;
+
+                while($row = sqlsrv_fetch_array($query))
+                {
+                    $results[$index] = $row;
+                    $index++;
+                }
+
+                return $results;
+            }
+        }
+    }
+
+    public static function getCategorie($id)
+    {
+        if($id != null && $id != "")
+        {
+            $connection = self::connect();
+
+            if($connection != null)
+            {
+                $query = sqlsrv_query($connection, "SELECT TOP 1 * FROM dbo.Categorieen WHERE Categorie_ID = $id");
+
+                $results = array();
+                $index = 0;
+
+                while($row = sqlsrv_fetch_array($query))
+                {
+                    $results[$index] = $row;
+                    $index++;
+                }
+
+                return $results;
+            }
+        }
+    }
+
+    public static function getProductenFromCategorie($id)
+    {
+        if($id != null && $id != "")
+        {
+            $connection = self::connect();
+
+            if($connection != null)
+            {
+                $query = sqlsrv_query($connection, "SELECT * FROM dbo.Producten WHERE Categorie_ID = $id");
 
                 $results = array();
                 $index = 0;

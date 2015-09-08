@@ -7,7 +7,7 @@ class Database
     {
         //echo gethostname();
         //Try to connect to local DB on Mike's pc
-        $conn = sqlsrv_connect(Credentials::$HostMike);
+        $conn = sqlsrv_connect(Credentials::$HostRemote, Credentials::$ConnInfoRemote);
         return $conn;
     }
 

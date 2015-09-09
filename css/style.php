@@ -2,6 +2,7 @@
 	header("Content-type: text/css; charset: UTF-8");
 
 	$pageWidth = "1170px";
+	$menuColor = "rgba(83, 81, 81, 1)";
 ?>
 
 body {
@@ -9,6 +10,45 @@ body {
     margin: 0 0 100px; /* bottom = footer height */
     padding-top: 50px;
     padding-bottom: 20px;
+}
+
+<!--wm = winkelmandje-->
+.wmTable {
+	width: 100%;
+}
+
+.wmImg {
+	margin-bottom: 5px;
+	height: 50px;
+	float: right;
+}
+
+.wmTd {
+	width: 24%;
+	padding-left: 5px;
+}
+
+.wmPrijs {
+	text-align: right;
+	padding-right: 5px;
+}
+
+.wmTdStatus {
+	color: green;
+}
+
+.wmTdRemove {
+	width: 4%
+}
+
+.wmTrTotaal {
+	border-top: 1px solid #000;
+}
+
+.wmTh {
+	font-weight: bold;
+	font-size: 16px;
+	padding-left: 5px;
 }
 
 .container {
@@ -139,14 +179,14 @@ footer {
 }
 
 #menubalk {
-	background-color: red !important;
+	background-color: transparent !important;
 	margin: auto;
 	height: 100%;
 	width: <?php echo $pageWidth;?> !important;
 }
 
 .navbar {
-	background-color: blue !important;
+	background-color: <?php echo $menuColor;?> !important;
 	background-image:none !important;
 }
 

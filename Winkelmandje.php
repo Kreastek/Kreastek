@@ -27,33 +27,60 @@ include 'base.php';
         }
     }
 
-    if(isset($_SESSION['producten']))
+	if(isset($_GET['id']) &&
+		trim($_GET['id']) != "" &&
+		isset($_GET['remove']) &&
+		$_GET['remove'] == true &&
+		isset($_SESSION['producten']))
+	{
+		unset($_SESSION['producten'][$_GET['id']]);
+	}
+
+    if(isset($_SESSION['producten']) && !empty($_SESSION['producten']))
     {
 		$productDetails = array();
+		$totaalPrijs = 0; ?>
 
-		echo "<table>";
+		<table class='wmTable'>
+			<tr>
+				<th class="wmTh"></th>
+				<th class="wmTh">Titel</th>
+				<th class="wmTh">Aantal</th>
+				<th class="wmTh">Status</th>
+				<th class="wmTh wmPrijs">Prijs</th>
+			</tr>
 
+		<?php
 		foreach($_SESSION['producten'] as $key => $item)
 		{
-			$product = Database::getProduct($key);
+			$results = Database::getProduct($key);
+			$product = $results[0];
 
 			if($product != null)
 			{
+				$AantalPrijs = $product['Prijs'] * $item;
+				$totaalPrijs += $AantalPrijs; ?>
 
-			}
-		}
+				<tr>
+					<td><img class="wmImg" src="<?php echo $product['Afbeelding'] ?>"></td>
+					<td class="wmTd"><?php echo $product['Titel'] . "<br/>&euro;" . $product['Prijs'];?></td>
+					<td class="wmTd"><?php echo $item;?></td>
+					<td class="wmTd wmTdStatus">Op voorraad</td>
+					<td class="wmTd wmPrijs"><?php echo "&euro;" . $AantalPrijs;?></td>
+					<td class="wmTdRemove"><a href="Winkelmandje.php?id=<?php echo $key?>&remove=true"><span class="glyphicon glyphicon-remove"></span></a></td>
+				</tr>
+			<?php }
+		} ?>
 
-		echo "</table>";
-
-		?>
-        <table>
-            <?php foreach($_SESSION['producten'] as $key => $item)
-            {
-                print "<tr><td>Product id: " . $key . " </td><td>Aantal: " . $item . "</td></tr>";
-            } ?>
-        </table>
-    <?php
-    }
+			<tr class="wmTrTotaal">
+				<td/>
+				<td/>
+				<td/>
+				<td/>
+				<td class="wmTd wmPrijs">Totaal: <?php echo "&euro;" . $totaalPrijs;?></td>
+			</tr>
+		</table>
+    <?php }
 	else
 	{
 		echo "<p>Er bevinden zich geen producten in uw winkelmandje.</p>";

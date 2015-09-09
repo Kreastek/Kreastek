@@ -63,6 +63,7 @@
 						<?php } ?>
 					</ul>
 				</li>
+				<li><a href="winkelmandje.php">Winkelmandje</a></li>
 			</ul>
 			<div class="navbar-right">
 				<ul class="nav navbar-nav">
@@ -137,11 +138,6 @@
 </body>
 </html>
 <script>
-    $(function () {
-        $('.dropdown-menu input').click(function (event) {
-            event.stopPropagation();
-        });
-
         var url = window.location;
         // Will only work if string in href matches with location
         $('ul.nav a[href="' + url + '"]').parent().addClass('active');
@@ -150,5 +146,4 @@
             return this.href == url;
         }).parent().addClass('active')
             .parent().parent().addClass('active');
-    });
 </script>

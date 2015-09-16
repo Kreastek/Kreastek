@@ -12,6 +12,19 @@ body {
     padding-bottom: 20px;
 }
 
+.afrekenKnop {
+	padding-top: 20px;
+	padding-right: 0px !important;
+}
+
+.deleteX {
+	color: red;
+}
+
+.deleteX:hover {
+	color:
+}
+
 <!--wm = winkelmandje-->
 .wmTable {
 	width: 100%;

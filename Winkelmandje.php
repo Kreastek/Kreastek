@@ -1,6 +1,7 @@
-<?php
-include 'base.php';
-?>
+<head>
+	<?php include 'base.php'; ?>
+</head>
+
 <?php startblock('body') ?>
 
 <?php
@@ -67,17 +68,20 @@ include 'base.php';
 					<td class="wmTd"><?php echo $item;?></td>
 					<td class="wmTd wmTdStatus">Op voorraad</td>
 					<td class="wmTd wmPrijs"><?php echo "&euro;" . $AantalPrijs;?></td>
-					<td class="wmTdRemove"><a href="Winkelmandje.php?id=<?php echo $key?>&remove=true"><span class="glyphicon glyphicon-remove"></span></a></td>
+					<td class="wmTdRemove"><a href="Winkelmandje.php?id=<?php echo $key?>&remove=true"><span class="glyphicon glyphicon-remove deleteX"></span></a></td>
 				</tr>
 			<?php }
 		} ?>
 
 			<tr class="wmTrTotaal">
-				<td/>
-				<td/>
-				<td/>
-				<td/>
-				<td class="wmTd wmPrijs">Totaal: <?php echo "&euro;" . $totaalPrijs;?></td>
+				<td colspan="5" class="wmTd wmPrijs">Totaal: <?php echo "&euro;" . $totaalPrijs;?></td>
+			</tr>
+			<tr>
+				<td colspan="5" class="wmTd wmPrijs afrekenKnop">
+					<a href="Winkelmandje.php">
+						<button class="btn btn-success">Afrekenen</button>
+					</a>
+				</td>
 			</tr>
 		</table>
     <?php }

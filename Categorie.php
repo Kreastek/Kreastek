@@ -32,12 +32,10 @@ if(isset($id)) {
                     <div style='clear:both'></div>
                 </div>
             </a>
-        <?php
+            <?php
         }
     }
-}
-    else
-    { ?>
-        <p>Het verzoek naar de database heeft geen resultaten opgeleverd, of de verbinding met de database is offline.</p>
-    <?php } ?>
-    <?php endblock() ?>
+} else { ?>
+    <p>Het verzoek naar de database heeft geen resultaten opgeleverd, of de verbinding met de database is offline.</p>
+<?php } ?>
+<?php endblock() ?>

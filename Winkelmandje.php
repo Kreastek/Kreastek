@@ -78,7 +78,7 @@
 			</tr>
 			<tr>
 				<td colspan="5" class="wmTd wmPrijs afrekenKnop">
-					<a href="Winkelmandje.php">
+					<a href="Afrekenen.php">
 						<button class="btn btn-success">Afrekenen</button>
 					</a>
 				</td>

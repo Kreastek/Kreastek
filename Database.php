@@ -149,7 +149,7 @@ class Database
 
             if($connection != null)
             {
-                $query = sqlsrv_query($connection, "SELECT * FROM dbo.Accounts WHERE Gebruikersnaam = '" . $username . "' AND Wachtwoord = '" . $password . "'" , array(), array( "Scrollable" => SQLSRV_CURSOR_KEYSET ));
+                $query = sqlsrv_query($connection, "SELECT * FROM dbo.Accounts WHERE Email = '" . $username . "' AND Wachtwoord = '" . $password . "'");
                 $amount = sqlsrv_num_rows($query);
                 return ($amount == 1);
             }

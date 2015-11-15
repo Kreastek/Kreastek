@@ -51,7 +51,7 @@
 		<div class="collapse navbar-collapse" id="navbarmain">
 			<ul class="nav navbar-nav">
 				<li><a href="index.php">Home</a></li>
-				<li><a href="TestStuff.php">Producten</a></li>
+				<li><a href="Products.php">Producten</a></li>
 				<!--Categorieen dropdown-->
 				<li class="dropdown">
 					<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Categoriën<span class="caret"></span></a>
@@ -63,11 +63,11 @@
 						<?php } ?>
 					</ul>
 				</li>
-				<li><a href="winkelmandje.php">Winkelmandje</a></li>
+				<li><a href="Winkelmandje.php">Winkelmandje</a></li>
 			</ul>
-			<div class="navbar-right">
-				<ul class="nav navbar-nav">
-					<li class="dropdown">
+			<ul class="nav navbar-nav navbar-right">
+
+				<li class="dropdown">
 						<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
 							<?php
 							if (isset($_SESSION['username']))
@@ -88,7 +88,7 @@
 									<form action="logout.php" method="post">
 										<div class="col-sm-12">
 											<div class="col-sm-12">
-												<button type="submit" class="btn btn-success btn-sm">Log out</button>
+												<button type="submit" class="btn btn-success btn-sm">Uitloggen</button>
 											</div>
 										</div>
 									</form>
@@ -111,7 +111,7 @@
 												<input type="password" placeholder="Wachtwoord" class="form-control input-sm" name="password" id="password" />
 											</div>
 											<div class="col-sm-12">
-												<button type="submit" class="btn btn-success btn-sm">Sign in</button>
+												<button type="submit" class="btn btn-success btn-sm">Inloggen</button>
 											</div>
 										</div>
 									</form>
@@ -121,7 +121,6 @@
 						</ul>
 					</li>
 				</ul>
-			</div>
 		</div>
 	</div>
 </div>

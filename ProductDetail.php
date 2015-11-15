@@ -79,3 +79,4 @@ include 'base.php';
 		echo "<p>Er is geen product geselecteerd.</p>";
 	}?>
 <?php endblock() ?>
+

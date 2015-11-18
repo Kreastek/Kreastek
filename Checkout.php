@@ -1,8 +1,6 @@
-<head>
-	<?php include 'base.php'; ?>
-</head>
-
-<?php startblock('body') ?>
+<?php
+	include 'base.php';
+	startblock('body') ?>
 
 <body>
 	<form>
@@ -47,3 +45,6 @@
 	<!-- /.modal-dialog -->
 </div>
 <!-- /.modal -->
+
+
+<?php endblock() ?>

@@ -1,7 +1,7 @@
 <?php
-include 'base.php';
+	include 'base.php';
+	startblock('body');
 ?>
-<?php startblock('body') ?>
 
 <?php
 	//Kijken of er een product gezet is
@@ -14,7 +14,18 @@ include 'base.php';
             <p><?php echo $product['Titel']?></p>
         </div>
 
-        <img class="detailFotoImg" src="<?php echo $product['Afbeelding'] ?>">
+		<?php
+		$afbeeldingen = Database::getAfbeeldingenBijProduct($product['Product_ID']);
+
+		if ($afbeeldingen != null) { ?>
+			<div class="detailImgContainer">
+				<img id="zoom_01" class="detailFotoImg" src="<?php echo $afbeeldingen[0] ?>" data-zoom-image="<?php echo $afbeeldingen[0] ?>"/>
+
+				<?php foreach ($afbeeldingen as $row) { ?>
+					<img class="detailTumbnail" src="<?php echo $row ?>" />
+				<?php }?>
+			</div>
+		<?php } ?>
 
         <div class="detailRightContainer">
             <div class="detailFotoPrijs"><p>&euro;<?php echo $product['Prijs']?>,-</p></div>
@@ -25,7 +36,6 @@ include 'base.php';
 				<button class="btn btn-success detailButton">In winkelmandje</button>
 			</a>
         </div>
-
 
         <hr>
         <div class="section_wrapper">
@@ -78,5 +88,16 @@ include 'base.php';
 	{
 		echo "<p>Er is geen product geselecteerd.</p>";
 	}?>
+
+<script src="js/jquery.elevateZoom-3.0.8.min.js"></script>
+<script>
+	$("#zoom_01").elevateZoom();
+
+	$(".detailTumbnail").click(function (){
+		$(".detailFotoImg").attr("src", $(this).attr("src"));
+		$(".detailFotoImg").data("zoom-image", $(this).attr("src"));
+		$("#zoom_01").elevateZoom();
+	})
+</script>
 <?php endblock() ?>
 

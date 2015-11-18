@@ -1,21 +1,21 @@
 <?php
-include 'base.php';
-/**
- * Created by PhpStorm.
- * User: Aaron
- * Date: 11-12-2014
- * Time: 13:02
- */
-// username and password sent from form
-$username=$_POST['username'];
-$password=$_POST['password'];
-if (Database::login($username, $password)) {
-    $_SESSION['username'] = $username;
-    $_SESSION['password'] = $password;
-    ?>
-    <script type="text/javascript">
-        window.location = "/"
-    </script>
-<?php
-}
-?>
+	session_start();
+	include 'Database.php';
+
+	//Email and password sent from form
+	$email=$_POST['email'];
+	$password=$_POST['password'];
+
+	//Rol 1 = gebruiker, 2 = admin
+	$rol = Database::login($email, $password);
+
+	if ($rol != null && trim($rol) != "")
+	{
+		$_SESSION['email'] = $email;
+		$_SESSION['password'] = $password;
+		$_SESSION['rol'] = $rol;
+
+		echo '<script type="text/javascript">window.location = "index.php"</script>';
+	}
+	else
+		echo '<script type="text/javascript">window.location = "LoginFout.php"</script>'; ?>

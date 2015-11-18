@@ -5,6 +5,15 @@
 	$menuColor = "rgba(83, 81, 81, 1)";
 ?>
 
+.error {
+	color: red;
+	font-size: 15px;
+}
+
+.navbar-font {
+	color: White !important;
+}
+
 body {
     background-color: #EEE;
     margin: 0 0 100px; /* bottom = footer height */
@@ -116,9 +125,7 @@ body {
 }
 
 .detailFotoImg {
-    width: 40%;
-    float:left;
-    border: solid lightgrey 1px;
+    width:100%;
 }
 .detailFotoTitle {
     font-size: xx-large;
@@ -167,6 +174,16 @@ body {
 .detailButton:hover {
     border-color: black;
     border-width: 1px;
+}
+.detailTumbnail {
+	width: 80px;
+	height: 80px;
+	float: left;
+}
+
+.detailImgContainer {
+	width: 40%;
+	float:left;
 }
 
 .NoBlueA {

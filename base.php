@@ -50,8 +50,8 @@
 		<!--Menu items-->
 		<div class="collapse navbar-collapse" id="navbarmain">
 			<ul class="nav navbar-nav">
-				<li><a href="index.php">Home</a></li>
-				<li><a href="Products.php">Producten</a></li>
+				<li><a class="navbar-font" href="index.php">Home</a></li>
+				<li><a class="navbar-font" href="Products.php">Producten</a></li>
 				<!--Categorieen dropdown-->
 				<li class="dropdown">
 					<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Categoriën<span class="caret"></span></a>
@@ -63,16 +63,20 @@
 						<?php } ?>
 					</ul>
 				</li>
-				<li><a href="Winkelmandje.php">Winkelmandje</a></li>
+				<li><a class="navbar-font" href="winkelmandje.php">Winkelmandje</a></li>
+				<?php if(isset($_SESSION['rol']) && $_SESSION['rol'] == 2)
+				{?>
+					<li><a class="navbar-font" href="cms.php">Klanten CMS</a></li>
+				<?php }?>
 			</ul>
-			<ul class="nav navbar-nav navbar-right">
-
-				<li class="dropdown">
-						<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+			<div class="navbar-right">
+				<ul class="nav navbar-nav">
+					<li class="dropdown">
+						<a href="#" class="dropdown-toggle navbar-font" data-toggle="dropdown" role="button" aria-expanded="false">
 							<?php
-							if (isset($_SESSION['username']))
+							if (isset($_SESSION['email']))
 							{
-								echo $_SESSION['username'] . '<span class="caret"></span>';
+								echo $_SESSION['email'] . '<span class="caret"></span>';
 							}
 							else
 							{ ?>
@@ -81,14 +85,14 @@
 						</a>
 						<ul class="dropdown-menu" role="menu">
 							<?php
-							if(isset($_SESSION['username']))
+							if(isset($_SESSION['email']))
 							{ ?>
 								<!--Geef uilog knop-->
 								<li>
 									<form action="logout.php" method="post">
 										<div class="col-sm-12">
 											<div class="col-sm-12">
-												<button type="submit" class="btn btn-success btn-sm">Uitloggen</button>
+												<button type="submit" class="btn btn-success btn-sm">Log out</button>
 											</div>
 										</div>
 									</form>
@@ -104,14 +108,14 @@
 												Login
 											</div>
 											<div class="col-sm-12">
-												<input type="text" placeholder="Gebruikersnaam" class="form-control input-sm" id="username" name="username"/>
+												<input type="text" placeholder="Gebruikersnaam" class="form-control input-sm" id="email" name="email"/>
 											</div>
 											<br/>
 											<div class="col-sm-12">
 												<input type="password" placeholder="Wachtwoord" class="form-control input-sm" name="password" id="password" />
 											</div>
 											<div class="col-sm-12">
-												<button type="submit" class="btn btn-success btn-sm">Inloggen</button>
+												<button type="submit" class="btn btn-success btn-sm">Sign in</button>
 											</div>
 										</div>
 									</form>
@@ -121,6 +125,7 @@
 						</ul>
 					</li>
 				</ul>
+			</div>
 		</div>
 	</div>
 </div>

@@ -141,21 +141,72 @@ class Database
 		return null;
     }
 
-    public static function login($username, $password)
+	public static function getAfbeeldingenBijProduct($id)
+	{
+		if($id != null && $id != "")
+		{
+			$connection = self::connect();
+
+			if($connection != null)
+			{
+				$query = sqlsrv_query($connection, "SELECT Source FROM Afbeeldingen WHERE Product_ID = $id");
+
+				$results = array();
+				$index = 0;
+
+				while($row = sqlsrv_fetch_array($query))
+				{
+					$results[$index] = $row["Source"];
+					$index++;
+				}
+
+				return $results;
+			}
+		}
+
+		return null;
+	}
+
+    public static function login($email, $password)
     {
-        if($username != null && $username != "" && $password != null && $password != "")
+        if($email != null && $email != "" && $password != null && $password != "")
         {
             $connection = self::connect();
 
             if($connection != null)
             {
-                $query = sqlsrv_query($connection, "SELECT * FROM dbo.Accounts WHERE Email = '" . $username . "' AND Wachtwoord = '" . $password . "'");
+                $query = sqlsrv_query($connection, "SELECT * FROM Accounts WHERE Email = '" . $email . "' AND Wachtwoord = '" . $password . "'" , array(), array( "Scrollable" => SQLSRV_CURSOR_KEYSET ));
                 $amount = sqlsrv_num_rows($query);
-                return ($amount == 1);
+				$account = sqlsrv_fetch_array($query);
+
+				if($amount == 1)
+					return $account['Rol'];
+				else
+					return null;
             }
         }
 
 		return null;
     }
-}
 
+	public static function getKlanten($zoektekst = null)
+	{
+		$connection = self::connect();
+
+		if($connection != null)
+		{
+			if($zoektekst == null)
+			{
+				$query = sqlsrv_query($connection, "SELECT Accounts.Account_ID, Accounts.Email, Klanten.* FROM Accounts INNER JOIN Klanten ON Accounts.Account_ID = Klanten.Klant_ID WHERE Rol = 1" , array(), array( "Scrollable" => SQLSRV_CURSOR_KEYSET ));
+			}
+			else
+			{
+				$query = sqlsrv_query($connection, "SELECT Accounts.Account_ID, Accounts.Email, Klanten.* FROM Accounts INNER JOIN Klanten ON Accounts.Account_ID = Klanten.Klant_ID WHERE Rol = 1 WHERE Rol = 1 AND Gebruikersnaam = '" . $zoektekst . "'" , array(), array( "Scrollable" => SQLSRV_CURSOR_KEYSET ));
+			}
+
+			return sqlsrv_fetch_array($query);
+		}
+
+		return null;
+	}
+}

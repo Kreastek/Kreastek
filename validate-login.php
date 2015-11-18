@@ -1,6 +1,5 @@
 <?php
-session_start();
-include 'Database.php';
+include 'base.php';
 /**
  * Created by PhpStorm.
  * User: Aaron
@@ -15,7 +14,7 @@ if (Database::login($username, $password)) {
     $_SESSION['password'] = $password;
     ?>
     <script type="text/javascript">
-        window.location = "index.php"
+        window.location = "/"
     </script>
 <?php
 }

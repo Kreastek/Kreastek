@@ -40,18 +40,17 @@ class Database
 
     public static function getCategorieen()
     {
-        //open conenction
         $connection = self::connect();
 
-        if ($connection != null) {
-            //run query
+        if ($connection != null)
+		{
             $query = sqlsrv_query($connection, "SELECT * FROM dbo.Categorieen");
 
             $results = array();
             $index = 0;
 
-            //put results into array
-            while ($row = sqlsrv_fetch_array($query)) {
+            while ($row = sqlsrv_fetch_array($query))
+			{
                 $results[$index] = $row;
                 $index++;
             }
@@ -63,6 +62,7 @@ class Database
         return null;
     }
 
+	//Get specific product
     public static function getProduct($id)
     {
         if($id != null && $id != "")
@@ -85,6 +85,8 @@ class Database
                 return $results;
             }
         }
+
+		return null;
     }
 
     public static function getCategorie($id)
@@ -109,6 +111,8 @@ class Database
                 return $results;
             }
         }
+
+		return null;
     }
 
     public static function getProductenFromCategorie($id)
@@ -133,6 +137,8 @@ class Database
                 return $results;
             }
         }
+
+		return null;
     }
 
     public static function login($username, $password)
@@ -143,11 +149,13 @@ class Database
 
             if($connection != null)
             {
-                $query = sqlsrv_query($connection, "SELECT * FROM dbo.Accounts WHERE Gebruikersnaam = '" . $username . "' AND Wachtwoord = '" . $password . "'" , array(), array( "Scrollable" => SQLSRV_CURSOR_KEYSET ));
+                $query = sqlsrv_query($connection, "SELECT * FROM dbo.Accounts WHERE Email = '" . $username . "' AND Wachtwoord = '" . $password . "'");
                 $amount = sqlsrv_num_rows($query);
                 return ($amount == 1);
             }
         }
+
+		return null;
     }
 }
 

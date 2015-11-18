@@ -1,3 +1,9 @@
+<?php
+	header("Content-type: text/css; charset: UTF-8");
+
+	$pageWidth = "1170px";
+	$menuColor = "rgba(83, 81, 81, 1)";
+?>
 
 body {
     background-color: #EEE;
@@ -6,8 +12,61 @@ body {
     padding-bottom: 20px;
 }
 
+.afrekenKnop {
+	padding-top: 20px;
+	padding-right: 0px !important;
+}
+
+.deleteX {
+	color: red;
+}
+
+.deleteX:hover {
+	color:
+}
+
+<!--wm = winkelmandje-->
+.wmTable {
+	width: 100%;
+}
+
+.wmImg {
+	margin-bottom: 5px;
+	height: 50px;
+	float: right;
+}
+
+.wmTd {
+	width: 24%;
+	padding-left: 5px;
+}
+
+.wmPrijs {
+	text-align: right;
+	padding-right: 5px;
+}
+
+.wmTdStatus {
+	color: green;
+}
+
+.wmTdRemove {
+	width: 4%
+}
+
+.wmTrTotaal {
+	border-top: 1px solid #000;
+}
+
+.wmTh {
+	font-weight: bold;
+	font-size: 16px;
+	padding-left: 5px;
+}
+
 .container {
     margin-top: 56px;
+	width: <?php echo $pageWidth;?> !important;
 }
 
 .productOverzichtPositioner {
@@ -132,10 +191,39 @@ footer {
     text-align: center;
 }
 
-.navbar-collapse{padding-top:3px;padding-bottom:3px !important}
-.dropdown-menu{width: 300px;border-top:0px;margin-top:3px;}
-.dropdown-menu .col-sm-12{margin-bottom:7px;}
-.dropdown-menu:after{
+#menubalk {
+	background-color: transparent !important;
+	margin: auto;
+	height: 100%;
+	width: <?php echo $pageWidth;?> !important;
+}
+
+.navbar {
+	background-color: <?php echo $menuColor;?> !important;
+	background-image:none !important;
+}
+
+.navbar-collapse
+{
+	padding-top: 3px;
+	padding-bottom: 3px !important
+}
+
+.dropdown-menu
+{
+	width: 300px;
+	border-top: 0px;
+	margin-top: 3px;
+}
+
+.dropdown-menu
+.col-sm-12
+{
+	margin-bottom: 7px;
+}
+
+.dropdown-menu:after
+{
     content: '';
     display: inline-block;
     border-left: 6px solid transparent;

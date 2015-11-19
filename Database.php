@@ -209,4 +209,107 @@ class Database
 
 		return null;
 	}
+
+	public static function addBestellign()
+	{
+		require_once 'PhpMailer/PHPMailerAutoload.php';
+
+		$connection = self::connect();
+
+		if($connection != null)
+		{
+
+			$bestelling_ID = self::getGUID();
+			$userID = self::getUserID();
+			$date = "GETDATE()";
+
+			$sql = "INSERT INTO Bestellingen (Bestelling_ID, Datum, Klant_ID) VALUES('" . $bestelling_ID . "'," . $date . ", " . $userID[0] . ")";
+			echo $sql;
+
+			$stmt = sqlsrv_query($connection, $sql);
+
+			foreach($_SESSION['producten'] as $key => $item)
+			{
+				$results = Database::getProduct($key);
+				$product = $results[0];
+
+				if($product != null)
+				{
+					$AantalPrijs = $product['Prijs'] * $item;
+
+					$subsql = "INSERT INTO Bestelregels (Bestelling_ID, Product_ID, Product_Aantal, Bedrag) VALUES ('$bestelling_ID', $key, $item, $AantalPrijs)";
+					$query = sqlsrv_query($connection, $subsql);
+				}
+			}
+
+			unset($_SESSION['producten']);
+
+			self::Mail();
+		}
+	}
+
+	public static function getUserID()
+	{
+		$connection = self::connect();
+
+		if($connection != null)
+		{
+			$email = $_SESSION['email'];
+			$query = sqlsrv_query($connection, "SELECT TOP 1 Klant_ID FROM Accounts WHERE Email = '$email'");
+
+			while($row = sqlsrv_fetch_array($query))
+			{
+				return $row;
+			}
+		}
+
+		return null;
+	}
+
+	public static function getGUID(){
+		if (function_exists('com_create_guid')){
+			return com_create_guid();
+		}else{
+			mt_srand((double)microtime()*10000);//optional for php 4.2.0 and up.
+			$charid = strtoupper(md5(uniqid(rand(), true)));
+			$hyphen = chr(45);// "-"
+			$uuid = chr(123)// "{"
+				.substr($charid, 0, 8).$hyphen
+				.substr($charid, 8, 4).$hyphen
+				.substr($charid,12, 4).$hyphen
+				.substr($charid,16, 4).$hyphen
+				.substr($charid,20,12)
+				.chr(125);// "}"
+			return $uuid;
+		}
+	}
+
+	public static function Mail()
+	{
+		$mail = new PHPMailer();
+
+		$mail->isSMTP();
+		$mail->SMTPAuth = true;
+		$mail->SMTPDebug = 4;
+
+		$mail->Host = "smtp.live.com";
+		$mail->Username = "kreastek@hotmail.com";
+		$mail->Password = "PonsKaart";
+		$mail->SMTPSecure = "tls";
+		$mail->Port = 587;
+
+		$mail->From = "kreastek@hotmail.com";
+		$mail->FromName = "Kreastek";
+		$mail->addReplyTo("kreastek@hotmail.com", "Reply address");
+		$mail->addAddress("mikederksen5@live.nl", "Mike Derksen");
+
+		$mail->Subject = "Bestelling";
+		$mail->Body = "Bedankt voor uw bestelling bij kreastek!";
+
+		if(!$mail->Send()) {
+			echo "Mailer Error: " . $mail->ErrorInfo;
+		} else {
+			echo "Message sent!";
+		}
+	}
 }

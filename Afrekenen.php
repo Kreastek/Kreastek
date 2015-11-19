@@ -6,5 +6,9 @@
 
 <h1>U heeft afgerekend, u zult een email ontvangen zodra uw bestelling is verwerkt.</h1>
 
+<?php
+	Database::addBestellign();
+?>
+
 
 <?php endblock() ?>

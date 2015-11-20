@@ -71,6 +71,11 @@
 			</ul>
 			<div class="navbar-right">
 				<ul class="nav navbar-nav">
+					<li>
+						<form id="searchForm" method="post" action="Zoeken.php">
+							<input class="form-control" name="search" id="search" placeholder="Zoeken" type="search">
+						</form>
+					</li>
 					<li class="dropdown">
 						<a href="#" class="dropdown-toggle navbar-font" data-toggle="dropdown" role="button" aria-expanded="false">
 							<?php

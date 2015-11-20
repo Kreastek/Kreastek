@@ -38,6 +38,21 @@ class Database
         return null;
     }
 
+	public static function deleteProduct($id)
+	{
+		$connection = self::connect();
+
+		if ($connection != null && $id != null) {
+
+			$query = sqlsrv_query($connection, "DELETE FROM Producten WHERE Product_ID = $id");
+			if (sqlsrv_rows_affected($query) > 0) {
+				return true;
+			}
+
+		}
+		return false;
+	}
+
     public static function getCategorieen()
     {
         $connection = self::connect();
@@ -97,18 +112,9 @@ class Database
 
             if($connection != null)
             {
-                $query = sqlsrv_query($connection, "SELECT TOP 1 * FROM dbo.Categorieen WHERE Categorie_ID = $id");
-
-                $results = array();
-                $index = 0;
-
-                while($row = sqlsrv_fetch_array($query))
-                {
-                    $results[$index] = $row;
-                    $index++;
-                }
-
-                return $results;
+				$query = sqlsrv_query($connection, "SELECT TOP 1 Naam FROM dbo.Categorieen WHERE Categorie_ID = $id");
+				$row = sqlsrv_fetch_array($query);
+				return $row[0];
             }
         }
 
@@ -312,4 +318,93 @@ class Database
 			echo "Message sent!";
 		}
 	}
+
+
+	public static function addProduct($titel, $omschrijving, $prijs, $categorieID, $afbeelding)
+	{
+		$connection = self::connect();
+		if ($connection != null && $titel != null && $omschrijving != null && $prijs != null && $categorieID != null && $afbeelding != null) {
+
+			$sql = "INSERT INTO Producten (Titel, Omschrijving, Prijs, Categorie_ID, Afbeelding) VALUES('$titel','$omschrijving',$prijs,$categorieID,'$afbeelding')";
+			$setProduct = sqlsrv_query($connection, $sql);
+			return ($setProduct);
+		}
+	}
+
+	public static function editProduct($id, $titel, $omschrijving, $prijs, $categorieID, $afbeelding)
+	{
+		$connection = self::connect();
+		if ($connection != null && $titel != null && $omschrijving != null && $prijs != null && $categorieID != null && $afbeelding != null) {
+
+			$sql = "UPDATE Producten SET Titel='$titel', Omschrijving='$omschrijving', Prijs=$prijs, Categorie_ID=$categorieID, Afbeelding='$afbeelding' WHERE Product_ID=$id;";
+			$setProduct = sqlsrv_query($connection, $sql);
+			return ($setProduct);
+		}
+	}
+
+	public static function deleteCategorie($id)
+	{
+		$connection = self::connect();
+
+		if ($connection != null && $id != null) {
+			$check = sqlsrv_query($connection, "SELECT TOP 1 * FROM Producten WHERE Categorie_ID=$id");
+			echo sqlsrv_rows_affected($check);
+			if (sqlsrv_num_rows($check) > 0) {
+				return 2;
+			}
+			$query = sqlsrv_query($connection, "DELETE FROM Categorieen WHERE Categorie_ID = $id");
+			if (sqlsrv_rows_affected($query) > 0) {
+				return true;
+			}
+
+		}
+		return false;
+	}
+
+	public static function addCategorie($naam)
+	{
+		$connection = self::connect();
+		if ($connection != null && $naam != null) {
+			$sql = "INSERT INTO Categorieen (Naam) VALUES('$naam')";
+			$setCategorie = sqlsrv_query($connection, $sql);
+			return ($setCategorie);
+		}
+	}
+
+	public static function editCategorie($id, $naam)
+	{
+		$connection = self::connect();
+		if ($connection != null && $naam != null) {
+
+			$sql = "UPDATE Categorieen SET Naam='$naam' WHERE Categorie_ID=$id;";
+			$setCategorie = sqlsrv_query($connection, $sql);
+			return ($setCategorie);
+		}
+	}
+
+	public static function getProductenFromSearchTerm($searchterm)
+	{
+		$connection = self::connect();
+
+		if ($connection != null) {
+			//run query
+			$query = sqlsrv_query($connection, "SELECT * FROM Producten WHERE Titel LIKE '%$searchterm%'");
+
+			$results = array();
+			$index = 0;
+
+			//put results into array
+			while ($row = sqlsrv_fetch_array($query)) {
+				$results[$index] = $row;
+				$index++;
+			}
+
+			//return array
+			return $results;
+		}
+
+		return null;
+	}
+
+
 }

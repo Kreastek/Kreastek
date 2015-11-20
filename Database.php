@@ -303,7 +303,7 @@ class Database
 		$mail->Port = 25;
 
 		$mail->setFrom('kreastek@hotmail.com', 'Kreastek');
-		$mail->addAddress("mikederksen5@live.nl", "Mike Derksen");
+		$mail->addAddress($_SESSION['email'], "Mike Derksen");
 
 		$mail->Subject = "Bestelling";
 		$mail->Body = "Bedankt voor uw bestelling bij kreastek!";

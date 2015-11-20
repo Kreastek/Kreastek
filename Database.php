@@ -222,7 +222,7 @@ class Database
 
 		$connection = self::connect();
 
-		if($connection != null)
+		if($connection != null && isset($_SESSION['email']) && isset($_SESSION['producten']))
 		{
 
 			$bestelling_ID = self::getGUID();
@@ -296,14 +296,13 @@ class Database
 		$mail->SMTPAuth = true;
 		$mail->SMTPDebug = 0;
 
+		$mail->isSMTP();
 		$mail->Host = "smtp.live.com";
 		$mail->Username = "kreastek@hotmail.com";
 		$mail->Password = "PonsKaart";
 		$mail->Port = 25;
 
-		$mail->From = "kreastek@hotmail.com";
-		$mail->FromName = "Kreastek";
-		$mail->addReplyTo("kreastek@hotmail.com", "Reply address");
+		$mail->setFrom('kreastek@hotmail.com', 'Kreastek');
 		$mail->addAddress("mikederksen5@live.nl", "Mike Derksen");
 
 		$mail->Subject = "Bestelling";

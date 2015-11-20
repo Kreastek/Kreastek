@@ -122,6 +122,7 @@
 											<div class="col-sm-12">
 												<button type="submit" class="btn btn-success btn-sm">Sign in</button>
 											</div>
+                                            <a href="Registreren.php">Registreren</a>
 										</div>
 									</form>
 								</li>

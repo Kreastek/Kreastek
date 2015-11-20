@@ -402,5 +402,54 @@ class Database
 		return null;
 	}
 
+    public static function addGebruiker($email, $password, $achternaam, $voorletters, $adres, $postcode, $plaats, $telefoon)
+    {
+        $connection = self::connect();
+        if ($connection != null && $email != null && $password != null && $achternaam != null && $voorletters != null && $adres != null && $postcode != null && $plaats != null && $telefoon != null) {
+            $sql = "INSERT INTO Klanten (Achternaam, Voorletters, Adres, Postcode, Plaats, Telefoon) VALUES('$achternaam', '$voorletters', '$adres', '$postcode', '$plaats', '$telefoon')";
+            sqlsrv_query($connection, $sql);
 
+            $result = sqlsrv_query($connection, "SELECT TOP 1 Klant_ID FROM Klanten ORDER BY Klant_ID DESC");
+
+            $results = array();
+            $index = 0;
+
+            //put results into array
+            while ($row = sqlsrv_fetch_array($result)) {
+                $results[$index] = $row;
+                $index++;
+            }
+
+            $id = $results[0]['Klant_ID'];
+            $sql = "INSERT INTO Accounts (Email, Wachtwoord, Rol, Klant_ID) VALUES('$email', '$password', 1, '" . $id . "')";
+            echo $sql;
+            sqlsrv_query($connection, $sql);
+            return (true);
+        }
+    }
+
+    public static function getAanbiedingen()
+    {
+        //open conenction
+        $connection = self::connect();
+
+        if ($connection != null) {
+            //run query
+            $query = sqlsrv_query($connection, "SELECT * FROM dbo.Producten WHERE AanbiedingPercentage > 0");
+
+            $results = array();
+            $index = 0;
+
+            //put results into array
+            while ($row = sqlsrv_fetch_array($query)) {
+                $results[$index] = $row;
+                $index++;
+            }
+
+            //return array
+            return $results;
+        }
+
+        return null;
+    }
 }

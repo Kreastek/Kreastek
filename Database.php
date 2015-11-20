@@ -230,7 +230,6 @@ class Database
 			$date = "GETDATE()";
 
 			$sql = "INSERT INTO Bestellingen (Bestelling_ID, Datum, Klant_ID) VALUES('" . $bestelling_ID . "'," . $date . ", " . $userID[0] . ")";
-			echo $sql;
 
 			$stmt = sqlsrv_query($connection, $sql);
 
@@ -294,15 +293,13 @@ class Database
 	{
 		$mail = new PHPMailer();
 
-		$mail->isSMTP();
 		$mail->SMTPAuth = true;
-		$mail->SMTPDebug = 4;
+		$mail->SMTPDebug = 0;
 
 		$mail->Host = "smtp.live.com";
 		$mail->Username = "kreastek@hotmail.com";
 		$mail->Password = "PonsKaart";
-		$mail->SMTPSecure = "tls";
-		$mail->Port = 587;
+		$mail->Port = 25;
 
 		$mail->From = "kreastek@hotmail.com";
 		$mail->FromName = "Kreastek";

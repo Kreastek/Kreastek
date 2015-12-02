@@ -181,7 +181,7 @@ class Database
 
             if($connection != null)
             {
-                $query = sqlsrv_query($connection, "SELECT * FROM Accounts WHERE Email = '" . $email . "' AND Wachtwoord = '" . $password . "'" , array(), array( "Scrollable" => SQLSRV_CURSOR_KEYSET ));
+                $query = sqlsrv_query($connection, "SELECT * FROM Accounts WHERE Email = '" . $email . "' AND Wachtwoord = '" . sha1($password) . "'" , array(), array( "Scrollable" => SQLSRV_CURSOR_KEYSET ));
                 $amount = sqlsrv_num_rows($query);
 				$account = sqlsrv_fetch_array($query);
 
@@ -421,7 +421,7 @@ class Database
             }
 
             $id = $results[0]['Klant_ID'];
-            $sql = "INSERT INTO Accounts (Email, Wachtwoord, Rol, Klant_ID) VALUES('$email', '$password', 1, '" . $id . "')";
+            $sql = "INSERT INTO Accounts (Email, Wachtwoord, Rol, Klant_ID) VALUES('$email', '" + sha1($password) + "', 1, '" . $id . "')";
             echo $sql;
             sqlsrv_query($connection, $sql);
             return (true);

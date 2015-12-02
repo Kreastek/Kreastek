@@ -10,7 +10,7 @@
     startblock('css') ?>
     <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css"/>
     <link rel="stylesheet" type="text/css" href="css/bootstrap-theme.min.css"/>
-    <link rel="stylesheet" type="text/css" href="css/style.php">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
     <link href="css/star-rating.min.css" media="all" rel="stylesheet" type="text/css"/>
     <?php endblock() ?>
     <?php startblock('scripts') ?>
@@ -44,17 +44,16 @@
 					<span class="icon-bar"></span>
 					<span class="icon-bar"></span>
 				</button>
-				<a class="navbar-brand" href="index.php">Kreastek</a>
+				<a href="index.php"><div class="navbar-brand"></div></a>
 			</div>
 		</div>
 		<!--Menu items-->
 		<div class="collapse navbar-collapse" id="navbarmain">
 			<ul class="nav navbar-nav">
 				<li><a class="navbar-font" href="index.php">Home</a></li>
-				<li><a class="navbar-font" href="Products.php">Producten</a></li>
 				<!--Categorieen dropdown-->
 				<li class="dropdown">
-					<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Categoriën<span class="caret"></span></a>
+					<a href="#" id="catDropdown" class="dropdown-toggle navbar-font" data-toggle="dropdown" role="button" aria-expanded="false">Producten<span class="caret"></span></a>
 					<ul class="dropdown-menu" role="menu">
 						<?php $results = Database::getCategorieen();
 						foreach ($results as $row) {
@@ -108,7 +107,7 @@
 								<!--Geef inlogvelden-->
 								<li>
 									<form action="validate-login.php" method="post">
-										<div class="col-sm-12">
+										<div class="col-sm-12 login-dropdown">
 											<div class="col-sm-12">
 												Login
 											</div>
@@ -122,7 +121,9 @@
 											<div class="col-sm-12">
 												<button type="submit" class="btn btn-success btn-sm">Sign in</button>
 											</div>
-                                            <a href="Registreren.php">Registreren</a>
+											<div class="col-sm-12">
+                                            	<a href="Registreren.php">Registreren</a>
+											</div>
 										</div>
 									</form>
 								</li>
@@ -148,12 +149,16 @@
 </body>
 </html>
 <script>
-        var url = window.location;
-        // Will only work if string in href matches with location
-        $('ul.nav a[href="' + url + '"]').parent().addClass('active');
-        // Will also work for relative and absolute hrefs
-        $('ul.nav a').filter(function () {
-            return this.href == url;
-        }).parent().addClass('active')
-            .parent().parent().addClass('active');
+	var url = window.location;
+	// Will only work if string in href matches with location
+	$('ul.nav a[href="' + url + '"]').parent().addClass('active');
+	// Will also work for relative and absolute hrefs
+	$('ul.nav a').filter(function () {
+		return this.href == url;
+	}).parent().addClass('active')
+		.parent().parent().addClass('active');
+
+	$("#catDropdown").click(function(){
+		window.location = "../NewKreastek/Categorie.php";
+	});
 </script>

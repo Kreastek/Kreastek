@@ -309,9 +309,7 @@ class Database
 		$mail->Body = "Bedankt voor uw bestelling bij kreastek!";
 
 		if(!$mail->Send()) {
-			echo "Mailer Error: " . $mail->ErrorInfo;
 		} else {
-			echo "Message sent!";
 		}
 	}
 
@@ -421,8 +419,8 @@ class Database
             }
 
             $id = $results[0]['Klant_ID'];
-            $sql = "INSERT INTO Accounts (Email, Wachtwoord, Rol, Klant_ID) VALUES('$email', '" + sha1($password) + "', 1, '" . $id . "')";
-            echo $sql;
+            $sql = "INSERT INTO Accounts (Email, Wachtwoord, Rol, Klant_ID) VALUES('" . $email . "', '" . sha1($password) . "', 1, '" . $id . "')";
+
             sqlsrv_query($connection, $sql);
             return (true);
         }
